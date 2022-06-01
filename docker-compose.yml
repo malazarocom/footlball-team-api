@@ -1,7 +1,8 @@
 version: '3.9'
 
 networks:
-  symfony_api_2022_net:
+  lfp_api_2022_net:
+
 
 services:
   server:
@@ -22,7 +23,7 @@ services:
       db_server:
         condition: service_healthy
     networks:
-      - symfony_api_2022_net
+      - lfp_api_2022_net
 
   db_server:
     image: mariadb:10.5.9
@@ -43,7 +44,7 @@ services:
       interval: 5s
       retries: 5
     networks:
-      - symfony_api_2022_net
+      - lfp_api_2022_net
     command: --skip-grant-tables
 
   db_admin:
@@ -59,7 +60,7 @@ services:
     volumes:
       - db_admin_data:/var/www/html
     networks:
-      - symfony_api_2022_net
+      - lfp_api_2022_net
 
 volumes:
   db_data:
